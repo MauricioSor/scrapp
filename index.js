@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 async function obtenerNovedades() {
-    const browser = await chromium.launch({ headless: false });
+const browser = await chromium.launch({ headless: true });
     const page = await browser.newPage();
     await page.goto("https://consultaexpedientes.justucuman.gov.ar/", { waitUntil: 'load' });
     // Click en "CAPITAL"
