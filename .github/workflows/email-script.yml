@@ -15,13 +15,30 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '20'
 
-      - name: Install Dependencies
-        run: npm ci
+      # Instalar dependencias explícitamente
+      - name: Install Cheerio
+        run: npm install cheerio@^1.0.0-rc.12
 
-      - name: Install Playwright Browsers
-        run: npx playwright install
+      - name: Install Dotenv
+        run: npm install dotenv@^17.2.2
+
+      - name: Install Node-Fetch
+        run: npm install node-fetch@^3.3.2
+
+      - name: Install Nodemailer
+        run: npm install nodemailer@^6.10.1
+
+      - name: Install Playwright
+        run: npm install playwright@^1.55.0
+
+      - name: Install Puppeteer
+        run: npm install puppeteer@^24.19.0
+
+      # Instalar navegadores de Playwright explícitamente
+      - name: Install Playwright Chromium
+        run: npx playwright install chromium
 
       - name: Run Scraper
         run: node index.js
