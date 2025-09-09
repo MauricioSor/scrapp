@@ -66,6 +66,9 @@ async function obtenerNovedades() {
             `No se han detectado nuevos expedientes con fecha ${fechaHoy}.`
         );
     };
+            await browser.close();  
+        console.log("Navegador cerrado ✅");
+        process.exit(0); // termina el script
 }
 
 obtenerNovedades();
