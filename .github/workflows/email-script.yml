@@ -6,10 +6,8 @@ on:
     - cron: '0 12 * * *'
     - cron: '0 17 * * *'
     - cron: '0 22 * * *'
-    - cron: '00 23 * * *'
-  
-  
-    workflow_dispatch:  
+    - cron: '0 23 * * *'
+  workflow_dispatch:  
 jobs:
   scrape:
     runs-on: ubuntu-latest
