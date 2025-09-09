@@ -4,6 +4,7 @@
   "description": "",
   "type": "module",
   "main": "index.js",
+    "postinstall": "npx playwright install chromium",
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
