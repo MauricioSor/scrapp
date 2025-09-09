@@ -6,7 +6,7 @@ on:
     - cron: '0 12 * * *'
     - cron: '0 17 * * *'
     - cron: '0 22 * * *'
-    - cron: '6 23 * * *'
+    - cron: '7 23 * * *'
   workflow_dispatch:  
 jobs:
   scrape:
