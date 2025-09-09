@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 async function obtenerNovedades() {
-const browser = await chromium.launch({ headless: true });
+    const browser = await chromium.launch({ headless: true });
     const page = await browser.newPage();
     await page.goto("https://consultaexpedientes.justucuman.gov.ar/", { waitUntil: 'load' });
     // Click en "CAPITAL"
@@ -37,6 +37,20 @@ const browser = await chromium.launch({ headless: true });
     const fechaHoy = hoyFormatoDDMMYYYY();
     const hayFechaHoy = celdas.some(fecha => fecha.trim() === fechaHoy);
     console.log("buscando novedades...");
+
+    // Filtrar solo las celdas que coinciden con la fecha de hoy
+    const celdasHoy = celdas.filter(fecha => fecha.trim() === fechaHoy);
+
+    // Saber cuántas hay
+    console.log(`Cantidad de novedades de hoy: ${celdasHoy.length}`);
+
+    if (celdasHoy.length > 0) {
+        console.log("Hay novedades hoy! ", celdasHoy);
+        // aquí podés hacer lo que quieras con esas celdas
+    } else {
+        console.log("No hay novedades hoy");
+    }
+
     if (hayFechaHoy) {
         console.log(`✅ Hay expediente nuevo con fecha: ${fechaHoy}`);
 
@@ -65,19 +79,19 @@ function hoyFormatoDDMMYYYY() {
 }
 
 async function enviarCorreo(asunto, mensaje) {
-const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // true solo si usas 465
-    
-    auth: {
-        user: process.env.MY_MAIL,
-        pass: process.env.MY_PASS
-    },
-    tls: {
-        rejectUnauthorized: false
-    }
-});
+    const transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false, // true solo si usas 465
+
+        auth: {
+            user: process.env.MY_MAIL,
+            pass: process.env.MY_PASS
+        },
+        tls: {
+            rejectUnauthorized: false
+        }
+    });
 
 
     await transporter.sendMail({
