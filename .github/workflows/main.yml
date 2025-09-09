@@ -2,7 +2,14 @@ name: Daily Scraper
 
 on:
   schedule:
-    - cron: '0 9 * * *' # todos los días a las 9am UTC
+      # 10:00 AM Argentina → 13:00 UTC
+    - cron: '0 13 * * *'
+    # 12:00 PM Argentina → 15:00 UTC
+    - cron: '0 15 * * *'
+    # 17:00 PM Argentina → 20:00 UTC
+    - cron: '0 20 * * *'
+    # 22:00 PM Argentina → 01:00 UTC (del día siguiente)
+    - cron: '0 1 * * *'
 
 jobs:
   scrape:
