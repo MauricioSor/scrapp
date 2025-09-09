@@ -8,7 +8,6 @@ on:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
 
@@ -18,14 +17,13 @@ jobs:
           node-version: '20'
 
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Install Playwright Browsers
-        run: npx playwright install
+      - name: Install Playwright Chromium
+        run: npx playwright install chromium
 
-      - name: Run scraper
+      - name: Run Scraper
         run: node index.js
         env:
-          # Tus variables de entorno si usás dotenv
           MY_MAIL: ${{ secrets.MY_MAIL }}
           MY_PASS: ${{ secrets.MY_PASS }}
