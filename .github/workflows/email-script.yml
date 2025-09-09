@@ -17,7 +17,6 @@ jobs:
         with:
           node-version: '20'
 
-      # Instalar dependencias explícitamente
       - name: Install Cheerio
         run: npm install cheerio@^1.0.0-rc.12
 
@@ -31,12 +30,11 @@ jobs:
         run: npm install nodemailer@^6.10.1
 
       - name: Install Playwright
-        run: npm install playwright@^1.55.0
+        run:  npx playwright install                                              
 
       - name: Install Puppeteer
         run: npm install puppeteer@^24.19.0
 
-      # Instalar navegadores de Playwright explícitamente
       - name: Install Playwright Chromium
         run: npx playwright install chromium
 
