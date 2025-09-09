@@ -2,8 +2,14 @@ name: Run Scraper
 
 on:
   schedule:
-    - cron: '*/2 * * * *'
-  workflow_dispatch:  
+    # Cada día a las 10:00 AM
+    - cron: '0 10 * * *'
+    # Cada día a las 12:00 PM
+    - cron: '0 12 * * *'
+    # Cada día a las 17:00 PM
+    - cron: '0 17 * * *'
+    # Cada día a las 22:00 PM
+    - cron: '0 22 * * *'
 jobs:
   scrape:
     runs-on: ubuntu-latest
