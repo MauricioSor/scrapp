@@ -107,4 +107,21 @@ async function enviarCorreo(asunto, mensaje) {
     console.log("Correo enviado ✅");
 }
 
+// -----------------------------
+// Bucle con timer cada 2 minutos
+// -----------------------------
+async function loopScraper() {
+    while (true) {
+        try {
+            console.log("Ejecutando scraper...");
+            await obtenerNovedades();
+        } catch (err) {
+            console.error("Error ejecutando scraper:", err);
+        }
+        console.log("Esperando 1 minutos...");
+        await new Promise(res => setTimeout(res, 1 * 60 * 1000)); // 2 minutos
+    }
+}
+
+loopScraper();
 
