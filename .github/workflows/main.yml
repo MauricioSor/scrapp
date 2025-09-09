@@ -1,0 +1,23 @@
+name: Run Email Script
+
+on:
+  workflow_dispatch: # permite ejecutar manualmente
+  schedule:
+    - cron: '0 13 * * *' # se ejecuta todos los días a las 13:00 UTC
+
+jobs:
+  send-email:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm install
+      - name: Run script
+        run: node index.js
+        env:
+          MY_MAIL: ${{ secrets.MY_MAIL }}
+          MY_PASS: ${{ secrets.MY_PASS }}
