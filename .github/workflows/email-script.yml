@@ -8,6 +8,8 @@ on:
     - cron: '0 15 * * *'
     # 17:00 PM Argentina → 20:00 UTC
     - cron: '0 20 * * *'
+    # 20:00 PM Argentina 
+    - cron: '0 23 * * *'
     # 22:00 PM Argentina → 01:00 UTC (del día siguiente)
     - cron: '0 1 * * *'
   workflow_dispatch:  
