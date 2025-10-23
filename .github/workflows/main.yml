@@ -34,3 +34,5 @@ jobs:
         env:
           MY_MAIL: ${{ secrets.MY_MAIL }}
           MY_PASS: ${{ secrets.MY_PASS }}
+          MY_EXP: ${{ secrets.MY_EXP }}
+          MY_NAME: ${{ secrets.MY_NAME }}
