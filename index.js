@@ -10,24 +10,22 @@ async function obtenerNovedades() {
 
     // Click en "CAPITAL"
     await page.getByRole('button', { name: /CAPITAL/i }).click();
-    console.log("Clickeado CAPITAL");
+    
 
     // Click en "Documentos y Locaciones"
     await page.getByRole('button', { name: /Documentos y Locaciones/i }).click();
-    console.log("Clickeado Documentos y Locaciones");
+    
 
     // Escribir en input
-    await page.fill('input[name="number"]', "6129/24");
-    console.log("Escrito número 6129/24");
+    await page.fill('input[name="number"]', `${process.env.MY_EXP}`);
+    
     await page.waitForTimeout(1000);
 
     // Click en "Buscar"
     await page.locator('button[type="submit"]').click();
-    console.log("Clickeado Buscar");
 
     const fila = page.getByRole('row', { name: '6129/24 GARCIA BEATRIZ ANALIA' });
     await fila.getByRole('button').click();
-    console.log("Clickeado botón de la fila específica");
     await page.waitForTimeout(5000);
 
     // Revisar fechas
@@ -35,24 +33,23 @@ async function obtenerNovedades() {
     const fechaHoy = hoyFormatoDDMMYYYY();
     const celdasHoy = celdas.filter(fecha => fecha.trim() === fechaHoy);
 
-    console.log(`Cantidad de novedades de hoy: ${celdasHoy.length}`);
 
     if (celdasHoy.length > 0) {
-        console.log("✅ Hay novedades hoy! ", celdasHoy);
+        
         await enviarCorreo(
             `Nuevo expediente: ${fechaHoy}`,
             `Se ha detectado un nuevo expediente con fecha ${fechaHoy}. Revisa el sistema.`
         );
     } else {
-        console.log(`❌ No hay expedientes nuevos para hoy (${fechaHoy})`);
+        
         await enviarCorreo(
-            `No hay nuevos expedientes: ${fechaHoy}`,
+            `No hay nuevos expedientes: ${fechaHoy}
+            Ultimo expediente con fecha ${celdas[1]} ${celdas[2]}`,
             `No se han detectado nuevos expedientes con fecha ${fechaHoy}.`
         );
     }
 
     await browser.close();
-    console.log("Navegador cerrado ✅");
 }
 
 function hoyFormatoDDMMYYYY() {
