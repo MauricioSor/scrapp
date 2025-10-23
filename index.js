@@ -43,9 +43,9 @@ async function obtenerNovedades() {
     } else {
         
         await enviarCorreo(
-            `No hay nuevos expedientes: ${fechaHoy}
-            Ultimo expediente con fecha ${celdas[1]} ${celdas[2]}`,
-            `No se han detectado nuevos expedientes con fecha ${fechaHoy}.`
+            `No hay nuevos expedientes: ${fechaHoy}`,
+            `No se han detectado nuevos expedientes con fecha ${fechaHoy}.
+            Ultimo expediente con fecha ${celdas[1]} ${celdas[2]}`
         );
     }
 
