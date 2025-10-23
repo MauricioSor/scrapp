@@ -24,7 +24,8 @@ async function obtenerNovedades() {
     // Click en "Buscar"
     await page.locator('button[type="submit"]').click();
     await page.waitForTimeout(5000);
-    const fila = page.getByRole('row', { name: '6129/24 GARCIA BEATRIZ ANALIA' });
+    const fila = page.getByRole('row', { name: `${process.env.MY_EXP} ${process.env.MY_NAME}` });
+    await page.waitForTimeout(5000);
     await fila.getByRole('button').click();
     await page.waitForTimeout(5000);
 
