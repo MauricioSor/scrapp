@@ -23,7 +23,7 @@ async function obtenerNovedades() {
 
     // Click en "Buscar"
     await page.locator('button[type="submit"]').click();
-
+    await page.waitForTimeout(5000);
     const fila = page.getByRole('row', { name: '6129/24 GARCIA BEATRIZ ANALIA' });
     await fila.getByRole('button').click();
     await page.waitForTimeout(5000);
